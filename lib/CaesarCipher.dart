@@ -44,7 +44,7 @@ class _CaesarCipherState extends State<CaesarCipher> {
           int shiftedCode = (asciiCode - 97 + _shift) % 26 + 97;
           char = String.fromCharCode(shiftedCode);
         }
-      } else {
+      } else if (char != ' '){
         setState(() {
           _resultencryption = '';
         });
@@ -86,7 +86,7 @@ class _CaesarCipherState extends State<CaesarCipher> {
           int shiftedCode = (asciiCode - 97 - _shift) % 26 + 97;
           char = String.fromCharCode(shiftedCode);
         }
-      } else {
+      } else if (char != ' '){
         setState(() {
           _resultdecryption = ' ';
         });
