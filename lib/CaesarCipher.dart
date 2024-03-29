@@ -44,6 +44,12 @@ class _CaesarCipherState extends State<CaesarCipher> {
           int shiftedCode = (asciiCode - 97 + _shift) % 26 + 97;
           char = String.fromCharCode(shiftedCode);
         }
+      } else {
+        setState(() {
+          _resultencryption = '';
+        });
+        _showAlertDialog('The text should contain only letters.');
+        return;
       }
       // Append the encrypted character to the cipher text
       cipherText += char;
@@ -60,7 +66,7 @@ class _CaesarCipherState extends State<CaesarCipher> {
 
     if (cipherText.isEmpty) {
       setState(() {
-        _resultdecryption = plainText;
+        _resultdecryption = ' ';
       });
       _showAlertDialog('Please enter text to decrypt.');
       return;
@@ -80,6 +86,12 @@ class _CaesarCipherState extends State<CaesarCipher> {
           int shiftedCode = (asciiCode - 97 - _shift) % 26 + 97;
           char = String.fromCharCode(shiftedCode);
         }
+      } else {
+        setState(() {
+          _resultdecryption = ' ';
+        });
+        _showAlertDialog('The text should contain only letters.');
+        return;
       }
       plainText += char;
     }
@@ -87,7 +99,6 @@ class _CaesarCipherState extends State<CaesarCipher> {
       _resultdecryption = plainText;
     });
   }
-
 
   void _showAlertDialog(String message) {
     showDialog(
