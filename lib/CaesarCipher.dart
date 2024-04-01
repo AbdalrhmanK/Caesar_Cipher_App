@@ -44,7 +44,7 @@ class _CaesarCipherState extends State<CaesarCipher> {
           int shiftedCode = (asciiCode - 97 + _shift) % 26 + 97;
           char = String.fromCharCode(shiftedCode);
         }
-      } else if (char != ' '){
+      } else if (char != ' ') {
         setState(() {
           _resultencryption = '';
         });
@@ -86,7 +86,7 @@ class _CaesarCipherState extends State<CaesarCipher> {
           int shiftedCode = (asciiCode - 97 - _shift) % 26 + 97;
           char = String.fromCharCode(shiftedCode);
         }
-      } else if (char != ' '){
+      } else if (char != ' ') {
         setState(() {
           _resultdecryption = ' ';
         });
@@ -132,6 +132,7 @@ class _CaesarCipherState extends State<CaesarCipher> {
         child: Column(
           children: [
             TextField(
+              autocorrect: false,
               controller: _controller,
               decoration: InputDecoration(
                 hintText: 'Enter a message to encrypt',
@@ -141,6 +142,7 @@ class _CaesarCipherState extends State<CaesarCipher> {
               height: 20,
             ),
             TextField(
+              autocorrect: false,
               controller: _controller2,
               decoration: InputDecoration(
                 hintText: 'Enter a message to Decrypt',
@@ -154,10 +156,12 @@ class _CaesarCipherState extends State<CaesarCipher> {
                 DropdownButton<int>(
                   value: _shift,
                   items: List.generate(26, (i) => i + 1)
-                      .map((i) => DropdownMenuItem(
-                            value: i,
-                            child: Text(i.toString()),
-                          ))
+                      .map(
+                        (i) => DropdownMenuItem(
+                          value: i,
+                          child: Text(i.toString()),
+                        ),
+                      )
                       .toList(),
                   onChanged: (value) {
                     setState(() {
